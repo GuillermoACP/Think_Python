@@ -21,16 +21,34 @@ bob = turtle.Turtle()
 3. Haz una copia de cuadrado y cambia el nombre a poligono. Agrega otro parámetro con nombre n y modifica el cuerpo para que dibuje un polígono regular con n lados.
 Pista: los ángulos exteriores de un polígono regular con n lados son de 360/n grados.
 '''
-def poligono(t, longitud, n):    
+def polilinea(t, n, longitud, angulo):
     for i in range(n):
         t.fd(longitud)
-        t.lt(360/n)
+        t.lt(angulo)
 
-    print(t)
+def poligono(t, longitud, n):    
+    angulo = 360/n
+    polilinea(t, n, longitud, angulo)
     turtle.mainloop()
 
 bob = turtle.Turtle()
 #poligono(bob, 200, 5)
+
+'''
+5. Haz una versión más general de circulo llamada arco que tome un parámetro adicional, angulo, que determine qué fracción de un círculo dibujar. angulo está en grados, así que cuando angulo=360, arco debería dibujar un círculo completo.
+'''
+
+def arco (t, r, angulo):
+    perimetro = 2 * 3.1416 * r    
+    l_arco = perimetro * (angulo/360)
+    n = int(l_arco / 3) + 1
+    longitud = l_arco / n    
+    giro = angulo / n
+    polilinea(t, n, longitud, giro)
+    turtle.mainloop()
+    
+bob = turtle.Turtle()
+#arco(bob, 50, 180)
 
 '''
 4. Escribe una función llamada circulo que tome una tortuga, t, y radio, r, como parámetros y dibuje un círculo aproximado llamando a poligono con una longitud y número de lados apropiado. Prueba tu función con un rango de valores de r.
@@ -38,28 +56,7 @@ Pista: averigua cuál es el perímetro del círculo y asegúrate de que se cumpl
 longitud * n = perimetro.
 '''
 def circulo(t, r):
-    n = 50
-    perimetro = 2 * 3.1416 * r
-    longitud = perimetro / n
-    poligono(t, longitud, n)    
+    arco(t, r, 360)    
     
 bob = turtle.Turtle()
-#circulo(bob, 50)
-
-'''
-5. Haz una versión más general de circulo llamada arco que tome un parámetro adicional, angulo, que determine qué fracción de un círculo dibujar. angulo está en grados, así que cuando angulo=360, arco debería dibujar un círculo completo.
-'''
-
-def arco (t, r, angulo):
-    n = 50
-    perimetro = 2 * 3.1416 * r
-    l_arco = perimetro * (angulo/360)
-    longitud = l_arco / n
-    giro = angulo / n
-    for i in range(n):
-        t.fd(longitud)
-        t.lt(giro)
-    turtle.mainloop()
-    
-bob = turtle.Turtle()
-arco(bob, 50, 180)
+circulo(bob, 50)
