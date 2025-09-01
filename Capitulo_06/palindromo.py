@@ -10,8 +10,15 @@ def ultima(palabra):
 def medio(palabra):
     return palabra[1:-1]
 
-print (medio('banana'))
-
 def es_palindromo(cadena):
-    if primera == ultima:
-        return
+    if len(cadena) <= 1:
+        return True
+    if primera(cadena) == ultima(cadena):
+        return es_palindromo(medio(cadena))    
+    else:
+        return False
+    
+print(es_palindromo("radar"))     
+print(es_palindromo("reconocer")) 
+print(es_palindromo("python"))    
+print(es_palindromo("ana"))  
